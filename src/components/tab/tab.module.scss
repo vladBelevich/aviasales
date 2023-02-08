@@ -1,0 +1,35 @@
+.tab_wrapper {
+  display: flex;
+  flex-direction: column;
+  .tab_panel {
+    display: flex;
+    justify-content: center;
+    border: 1px solid #dfe5ec;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    .tab_button {
+      outline: none;
+      width: 33.3333%;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 20px;
+      letter-spacing: 0.5px;
+      text-align: center;
+      height: 50px;
+      background-color: white;
+      border: 0 solid #dfe5ec;
+    }
+    .left {
+      border-bottom-left-radius: 10px;
+      border-top-left-radius: 10px;
+    }
+    .right {
+      border-bottom-right-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .clicked {
+      background-color: #2196f3;
+      color: white;
+    }
+  }
+}

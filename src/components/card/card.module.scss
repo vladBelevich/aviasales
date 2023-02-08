@@ -1,0 +1,57 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  margin-bottom: 40px;
+  .title_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    .price {
+      span {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 24px;
+        letter-spacing: 0;
+        text-align: left;
+        color: #2196f3;
+      }
+    }
+    .logo_wrapper {
+      width: 110px;
+      img {
+        object-fit: contain;
+        width: 110px;
+      }
+    }
+  }
+  .ticket_description{
+    display: flex;
+    flex-direction: column;
+    .description_departure{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .description_arrival{
+      display: flex;
+      justify-content: space-between;
+    }
+    .description_element__title{
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 18px;
+      letter-spacing: 0.5px;
+      text-align: left;
+      color: #A0B0B9;
+    }
+    .description_element__title{
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+      letter-spacing: 0;
+      text-align: left;
+    }
+  }
+}
