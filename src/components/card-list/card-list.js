@@ -1,5 +1,6 @@
 import cardListClasses from './card-list.module.scss';
 import Card from '../card';
+// import { connect } from 'react-redux';
 
 function CardList() {
   return (
@@ -11,5 +12,11 @@ function CardList() {
     </div>
   );
 }
+
+// const mapDispatchToProps = (dispatch) => {
+//   dispatch;
+// };
+//
+// export default connect(mapDispatchToProps)(CardList);
 
 export default CardList;

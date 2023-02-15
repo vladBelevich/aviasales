@@ -8,7 +8,7 @@ const { Content } = Layout;
 function MainContent() {
   return (
     <Layout>
-      <Sider width='232px' theme='light'>
+      <Sider width='150px' theme='light'>
         <Filter />
       </Sider>
       <Content

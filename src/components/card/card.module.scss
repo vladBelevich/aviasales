@@ -1,3 +1,4 @@
+@import 'src/services/style/variables';
 .card {
   display: flex;
   flex-direction: column;
@@ -11,11 +12,12 @@
     .price {
       span {
         font-size: 24px;
+        font-family: $main_font;
         font-weight: 600;
         line-height: 24px;
         letter-spacing: 0;
         text-align: left;
-        color: #2196f3;
+        color: $active_color;
       }
     }
     .logo_wrapper {
@@ -26,27 +28,29 @@
       }
     }
   }
-  .ticket_description{
+  .ticket_description {
     display: flex;
     flex-direction: column;
-    .description_departure{
+    .description_departure {
       display: flex;
       justify-content: space-between;
       margin-bottom: 10px;
     }
-    .description_arrival{
+    .description_arrival {
       display: flex;
       justify-content: space-between;
     }
-    .description_element__title{
+    .description_element__title {
+      font-family: $main_font;
       font-size: 12px;
       font-weight: 600;
       line-height: 18px;
       letter-spacing: 0.5px;
       text-align: left;
-      color: #A0B0B9;
+      color: $inactive_color;
     }
-    .description_element__title{
+    .description_element__value {
+      font-family: $main_font;
       font-size: 14px;
       font-weight: 600;
       line-height: 21px;

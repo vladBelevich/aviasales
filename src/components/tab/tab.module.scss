@@ -1,3 +1,4 @@
+@import "src/services/style/variables";
 .tab_wrapper {
   display: flex;
   flex-direction: column;
@@ -11,6 +12,7 @@
       outline: none;
       width: 33.3333%;
       font-size: 12px;
+      font-family: $main_font;
       font-weight: 600;
       line-height: 20px;
       letter-spacing: 0.5px;
@@ -28,7 +30,7 @@
       border-top-right-radius: 10px;
     }
     .clicked {
-      background-color: #2196f3;
+      background-color: $active_color;
       color: white;
     }
   }

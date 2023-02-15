@@ -1,34 +1,20 @@
-import TicketSearch from '../../services/ticket-search/ticket-search';
 import Logo from '../logo';
+// import * as actions from '../../services/redux/actions';
 import MainContent from '../content';
+import { getDataThunkCreator } from '../../services/redux/actions';
+import { connect } from 'react-redux';
 import { Component } from 'react';
 
-export default class App extends Component {
-  state = {
-    searchID: null,
-  };
-
-  ticket = new TicketSearch();
-
+export class App extends Component {
   componentDidMount() {
-    this.ticket
-      .getSearchId()
-      .then((res) => this.setState({ searchID: res.searchId }));
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { searchID } = this.state;
-    if (prevState.searchID !== searchID) {
-      this.ticket
-        .getTickets(searchID)
-        .then((res) => this.setState({ data: res }));
-    }
+    // eslint-disable-next-line
+    this.props.getDataThunkCreator();
   }
 
   render() {
-    const { data } = this.state;
+    const { data, searchID } = this.props;
     // eslint-disable-next-line
-    console.log(data);
+    console.log(data, searchID);
     return (
       <div>
         <Logo />
@@ -37,3 +23,12 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const { data, searchID } = state;
+  return { data, searchID };
+};
+
+export default connect(mapStateToProps, {
+  getDataThunkCreator,
+})(App);
