@@ -1,0 +1,16 @@
+@import "src/services/style/variables";
+.load_tickets {
+  width: 100%;
+  font-family: $main_font;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  height: 50px;
+  color: white;
+  background-color: $active_color;
+  border: 0;
+  outline: none;
+  border-radius: $button_border_radius;
+}

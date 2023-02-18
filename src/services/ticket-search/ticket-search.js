@@ -3,7 +3,13 @@ export default class TicketSearch {
 
   async getResource(url) {
     const res = await fetch(`${this.API}${url}`);
+    if (res.status === 500) {
+      return {
+        error: true,
+      };
+    }
     if (!res.ok) {
+      console.log(res);
       throw new Error(`Could not fetch ${url}, received ${res.status}`);
     }
     return res.json();

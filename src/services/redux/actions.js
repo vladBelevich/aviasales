@@ -17,20 +17,51 @@ export const setData = (data) => ({
   type: 'SET_DATA_TO_STATE',
   data,
 });
+export const finishGetData = () => ({
+  type: 'FINISH_GET_DATA',
+});
 
 const ticketApi = new TicketSearch();
 
-export const getDataThunkCreator = () => (dispatch) => {
-  ticketApi
-    .getSearchId()
-    .then((result) => {
-      dispatch(setID(result.searchId));
-      return result.searchId;
-    })
-    .then((searchID) => {
-      console.log(searchID);
-      ticketApi.getTickets(searchID).then((data) => {
+export const getDataThunkCreator = (searchID) => (dispatch) => {
+  function getData() {
+    ticketApi.getTickets(searchID).then((data) => {
+      console.log(data);
+      if (data.error) {
+        getData();
+      } else if (data.stop) {
+        console.log(data);
+        dispatch(finishGetData());
+      } else {
         dispatch(setData(data.tickets));
-      });
+        getData();
+      }
     });
+  }
+  getData();
 };
+
+export const getIdThunkCreator = () => (dispatch) => {
+  ticketApi.getSearchId().then((result) => {
+    dispatch(setID(result.searchId));
+  });
+};
+
+// export const getDataThunkCreator = () => (dispatch) => {
+//   ticketApi
+//     .getSearchId()
+//     .then((result) => {
+//       dispatch(setID(result.searchId));
+//       return result.searchId;
+//     })
+//     .then((searchID) => {
+//       // eslint-disable-next-line
+//       console.log(searchID);
+//       ticketApi.getTickets(searchID).then((data) => {
+//         if (data.stop === true) {
+//           return;
+//         }
+//         dispatch(setData(data.tickets));
+//       });
+//     });
+// };

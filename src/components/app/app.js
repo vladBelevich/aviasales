@@ -1,20 +1,17 @@
 import Logo from '../logo';
-// import * as actions from '../../services/redux/actions';
 import MainContent from '../content';
-import { getDataThunkCreator } from '../../services/redux/actions';
+import { getIdThunkCreator } from '../../services/redux/actions';
 import { connect } from 'react-redux';
 import { Component } from 'react';
 
 export class App extends Component {
   componentDidMount() {
     // eslint-disable-next-line
-    this.props.getDataThunkCreator();
+    const { getIdThunkCreator } = this.props;
+    getIdThunkCreator();
   }
 
   render() {
-    const { data, searchID } = this.props;
-    // eslint-disable-next-line
-    console.log(data, searchID);
     return (
       <div>
         <Logo />
@@ -24,11 +21,8 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  const { data, searchID } = state;
-  return { data, searchID };
-};
+const mapStateToProps = (state) => state;
 
 export default connect(mapStateToProps, {
-  getDataThunkCreator,
+  getIdThunkCreator,
 })(App);

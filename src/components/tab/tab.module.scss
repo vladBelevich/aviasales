@@ -6,7 +6,6 @@
     display: flex;
     justify-content: center;
     border: 1px solid #dfe5ec;
-    border-radius: 5px;
     margin-bottom: 20px;
     .tab_button {
       outline: none;
@@ -22,12 +21,12 @@
       border: 0 solid #dfe5ec;
     }
     .left {
-      border-bottom-left-radius: 10px;
-      border-top-left-radius: 10px;
+      border-bottom-left-radius: $button_border_radius;
+      border-top-left-radius: $button_border_radius;
     }
     .right {
-      border-bottom-right-radius: 10px;
-      border-top-right-radius: 10px;
+      border-bottom-right-radius: $button_border_radius;
+      border-top-right-radius: $button_border_radius;
     }
     .clicked {
       background-color: $active_color;

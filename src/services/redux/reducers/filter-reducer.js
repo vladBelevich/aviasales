@@ -1,7 +1,7 @@
 import { defaultState } from '../default-state';
 // eslint-disable-next-line
 const filterReducer = (state = defaultState, action) => {
-  const { filter } = state;
+  const { filter, data } = state;
   switch (action.type) {
     case 'CHECKED_ALL':
       if (filter.allChecked) {
@@ -155,13 +155,22 @@ const filterReducer = (state = defaultState, action) => {
     case 'SET_ID_SEARCH_TO_STATE': {
       return {
         ...state,
+        loading: false,
         searchID: action.searchID,
       };
     }
     case 'SET_DATA_TO_STATE': {
       return {
         ...state,
-        data: action.data,
+        data: data.concat(action.data),
+        hasData: true,
+        gettingData: true,
+      };
+    }
+    case 'FINISH_GET_DATA': {
+      return {
+        ...state,
+        gettingData: false,
       };
     }
     default:

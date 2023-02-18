@@ -7,6 +7,10 @@ export const defaultState = {
     twoTransferChecked: true,
     threeTransferChecked: true,
   },
-  data: {},
+  data: [],
+  loading: true,
   searchID: null,
+  numberOfTickets: 5,
+  hasData: false,
+  gettingData: false,
 };
