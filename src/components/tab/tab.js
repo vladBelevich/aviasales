@@ -1,33 +1,49 @@
-import tabsClasses from './tab.module.scss';
+import classes from './tab.module.scss';
+import * as actions from '../../services/redux/actions';
+import { connect } from 'react-redux';
 
-import CardList from '../card-list';
+function Tab({ tab, tabCheapestAct, tabFastestAct, tabOptimalAct }) {
+  const { cheapest, fastest, optimal } = tab;
+  const activeButton = `${classes.tab_button} ${classes.clicked}`;
+  const inactiveButton = `${classes.tab_button}`;
+  const cheapestButtonClass = cheapest ? activeButton : inactiveButton;
+  const fastestButtonClass = fastest ? activeButton : inactiveButton;
+  const optimalButtonClass = optimal ? activeButton : inactiveButton;
 
-function Tab() {
   return (
-    <div className={tabsClasses.tab_wrapper}>
-      <div className={tabsClasses.tab_panel}>
+    <div className={classes.tab_wrapper}>
+      <div className={classes.tab_panel}>
         <button
           type='button'
-          className={`${tabsClasses.tab_button} ${tabsClasses.left}`}
+          className={cheapestButtonClass}
+          onClick={() => tabCheapestAct()}
         >
           САМЫЙ ДЕШЕВЫЙ
         </button>
         <button
           type='button'
-          className={`${tabsClasses.tab_button} ${tabsClasses.clicked}`}
+          className={fastestButtonClass}
+          onClick={() => tabFastestAct()}
         >
           САМЫЙ БЫСТРЫЙ
         </button>
         <button
           type='button'
-          className={`${tabsClasses.tab_button} ${tabsClasses.right} `}
+          className={optimalButtonClass}
+          onClick={() => tabOptimalAct()}
         >
           ОПТИМАЛЬНЫЙ
         </button>
       </div>
-      <CardList />
     </div>
   );
 }
 
-export default Tab;
+const mapStateToProps = (state) => {
+  const { tab } = state;
+  return {
+    tab,
+  };
+};
+
+export default connect(mapStateToProps, actions)(Tab);

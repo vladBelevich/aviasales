@@ -1,0 +1,11 @@
+@import 'src/services/style/variables';
+.alert_wrapper{
+  width: 500px;
+  margin: 0 auto;
+}
+
+@media (max-width: 843px) {
+  .alert_wrapper{
+    width: 100%;
+  }
+}

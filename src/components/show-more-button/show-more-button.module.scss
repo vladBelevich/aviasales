@@ -1,0 +1,27 @@
+@import 'src/services/style/variables';
+.show_more_tickets__wrapper {
+  width: 100%;
+  align-self: center;
+  .show_more_tickets__button {
+    display: block;
+    font-family: $main_font;
+    min-width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    height: 50px;
+    color: white;
+    background-color: $active_color;
+    border: 0;
+    outline: none;
+    border-radius: $border_radius;
+  }
+}
+
+@media (min-width: $mobile_width_screen) {
+  .show_more_tickets__wrapper{
+    width: 500px;
+  }
+}

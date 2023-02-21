@@ -1,7 +1,7 @@
 import { defaultState } from '../default-state';
 // eslint-disable-next-line
 const filterReducer = (state = defaultState, action) => {
-  const { filter, data } = state;
+  const { filter, data, numberOfTickets, tab } = state;
   switch (action.type) {
     case 'CHECKED_ALL':
       if (filter.allChecked) {
@@ -152,6 +152,39 @@ const filterReducer = (state = defaultState, action) => {
         },
       };
     }
+    case 'CHEAPEST_ACTIVE': {
+      return {
+        ...state,
+        tab: {
+          ...tab,
+          cheapest: true,
+          fastest: false,
+          optimal: false,
+        },
+      };
+    }
+    case 'FASTEST_ACTIVE': {
+      return {
+        ...state,
+        tab: {
+          ...tab,
+          cheapest: false,
+          fastest: true,
+          optimal: false,
+        },
+      };
+    }
+    case 'OPTIMAL_ACTIVE': {
+      return {
+        ...state,
+        tab: {
+          ...tab,
+          cheapest: false,
+          fastest: false,
+          optimal: true,
+        },
+      };
+    }
     case 'SET_ID_SEARCH_TO_STATE': {
       return {
         ...state,
@@ -163,6 +196,7 @@ const filterReducer = (state = defaultState, action) => {
       return {
         ...state,
         data: data.concat(action.data),
+        loadingAllData: true,
         hasData: true,
         gettingData: true,
       };
@@ -171,6 +205,29 @@ const filterReducer = (state = defaultState, action) => {
       return {
         ...state,
         gettingData: false,
+        loadingAllData: false,
+      };
+    }
+    case 'FILTER_DATA': {
+      return {
+        ...state,
+        filteredData: action.filteredData,
+        hasFilteredData: true,
+        alertEmptyData: false,
+      };
+    }
+    case 'EMPTY_FILTERED_DATA': {
+      return {
+        ...state,
+        filteredData: action.filteredData,
+        hasFilteredData: false,
+        alertEmptyData: true,
+      };
+    }
+    case 'SHOW_MORE_TICKETS': {
+      return {
+        ...state,
+        numberOfTickets: numberOfTickets + 5,
       };
     }
     default:

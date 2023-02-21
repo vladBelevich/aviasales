@@ -1,0 +1,20 @@
+@import 'src/services/style/variables';
+.mainContent_wrapper {
+  display: flex;
+  .mainContent_aside {
+    margin-right: 20px;
+  }
+  .mainContent_center {
+    flex-grow: 1;
+  }
+}
+
+@media (max-width: $mobile_width_screen) {
+  .mainContent_wrapper {
+    flex-direction: column;
+    .mainContent_aside {
+      margin-right: 10px;
+      margin-bottom: 20px;
+    }
+  }
+}

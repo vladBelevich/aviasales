@@ -1,40 +1,72 @@
 import cardListClasses from './card-list.module.scss';
 import Card from '../card';
 import Spinner from '../spinner';
-import LoadTickets from '../load-tickets';
+import LoadTickets from '../load-tickets-button';
+import ShowMoreButton from '../show-more-button';
+import ErrorEmptyTickets from '../error-empty-tickets';
 import { connect } from 'react-redux';
 
-function CardList({ data, numberOfTickets, loading, hasData }) {
+function CardList({
+  filteredData,
+  numberOfTickets,
+  loading,
+  hasFilteredData,
+  alertEmptyData,
+}) {
   let cards;
-  if (hasData) {
+
+  if (hasFilteredData) {
     const cardsData = [];
     for (let i = 0; i < numberOfTickets; i += 1) {
-      const newArr = data[i];
-      newArr.key = data.indexOf(data[i]);
+      const newArr = filteredData[i];
+      newArr.key = filteredData.indexOf(filteredData[i]);
       cardsData.push(newArr);
     }
     cards = cardsData.map((cardData) => (
       <Card data={cardData} key={cardData.key} />
     ));
   }
-  const cardsView = hasData ? cards : null;
+
+  const alertView = alertEmptyData ? <ErrorEmptyTickets /> : null;
+  const cardsView = hasFilteredData ? cards : null;
+  const showMoreButtonView = hasFilteredData ? <ShowMoreButton /> : null;
   const spinner = loading ? <Spinner /> : null;
-  const loadTicketsButton = !hasData ? <LoadTickets /> : null;
+  const loadTicketsButton = !hasFilteredData ? <LoadTickets /> : null;
 
   return (
     <div className={cardListClasses.cardList_wrapper}>
       {cardsView}
       {spinner}
       {loadTicketsButton}
-      <LoadTickets />
+      {showMoreButtonView}
+      {alertView}
     </div>
   );
 }
 
-const mapStateToProps = (state) => ({
-  data: state.data,
-  numberOfTickets: state.numberOfTickets,
-  loading: state.loading,
-  hasData: state.hasData,
-});
+const mapStateToProps = (state) => {
+  const {
+    filteredData,
+    numberOfTickets,
+    loading,
+    hasData,
+    hasFilteredData,
+    alertEmptyData,
+    tab,
+    filter,
+    data,
+  } = state;
+  return {
+    filteredData,
+    numberOfTickets,
+    loading,
+    hasData,
+    hasFilteredData,
+    alertEmptyData,
+    tab,
+    filter,
+    data,
+  };
+};
+
 export default connect(mapStateToProps)(CardList);

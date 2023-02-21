@@ -1,4 +1,4 @@
-@import "src/services/style/variables";
+@import 'src/services/style/variables';
 .tab_wrapper {
   display: flex;
   flex-direction: column;
@@ -19,18 +19,32 @@
       height: 50px;
       background-color: white;
       border: 0 solid #dfe5ec;
+
     }
-    .left {
-      border-bottom-left-radius: $button_border_radius;
-      border-top-left-radius: $button_border_radius;
+    :first-child {
+      border-bottom-left-radius: $border_radius;
+      border-top-left-radius: $border_radius;
     }
-    .right {
-      border-bottom-right-radius: $button_border_radius;
-      border-top-right-radius: $button_border_radius;
+    :last-child {
+      border-bottom-right-radius: $border_radius;
+      border-top-right-radius: $border_radius;
     }
+
     .clicked {
       background-color: $active_color;
       color: white;
+    }
+  }
+}
+@media (max-width: 394px) {
+  .tab_wrapper {
+    .tab_panel {
+      .tab_button {
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.1px;
+        padding: 1px 0;
+      }
     }
   }
 }

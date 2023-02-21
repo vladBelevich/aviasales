@@ -1,5 +1,6 @@
+import classes from './app.module.scss';
 import Logo from '../logo';
-import MainContent from '../content';
+import MainContent from '../main-content';
 import { getIdThunkCreator } from '../../services/redux/actions';
 import { connect } from 'react-redux';
 import { Component } from 'react';
@@ -13,7 +14,7 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className={classes.app_wrapper}>
         <Logo />
         <MainContent />
       </div>
@@ -21,8 +22,6 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => state;
-
-export default connect(mapStateToProps, {
+export default connect(null, {
   getIdThunkCreator,
 })(App);

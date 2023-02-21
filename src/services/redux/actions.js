@@ -1,5 +1,7 @@
 import TicketSearch from '../ticket-search/ticket-search';
 
+const ticketApi = new TicketSearch();
+
 export const checkedAllAct = () => ({ type: 'CHECKED_ALL' });
 export const checkedWithoutTransferAct = () => ({
   type: 'CHECKED_WITHOUT_TRANSFER',
@@ -9,6 +11,17 @@ export const checkedTwoTransferAct = () => ({ type: 'CHECKED_TWO_TRANSFER' });
 export const checkedThreeTransferAct = () => ({
   type: 'CHECKED_THREE_TRANSFER',
 });
+
+export const tabCheapestAct = () => ({
+  type: 'CHEAPEST_ACTIVE',
+});
+export const tabFastestAct = () => ({
+  type: 'FASTEST_ACTIVE',
+});
+export const tabOptimalAct = () => ({
+  type: 'OPTIMAL_ACTIVE',
+});
+
 export const setID = (id) => ({
   type: 'SET_ID_SEARCH_TO_STATE',
   searchID: id,
@@ -20,8 +33,27 @@ export const setData = (data) => ({
 export const finishGetData = () => ({
   type: 'FINISH_GET_DATA',
 });
+export const filterData = (data) => {
+  if (data.length === 0) {
+    return {
+      type: 'EMPTY_FILTERED_DATA',
+      filteredData: data,
+    };
+  }
+  return {
+    type: 'FILTER_DATA',
+    filteredData: data,
+  };
+};
 
-const ticketApi = new TicketSearch();
+export const emptyFilteredData = (data) => ({
+  type: 'EMPTY_FILTERED_DATA',
+  filteredData: data,
+  hasFilteredData: false,
+});
+export const showMoreTickets = () => ({
+  type: 'SHOW_MORE_TICKETS',
+});
 
 export const getDataThunkCreator = (searchID) => (dispatch) => {
   function getData() {
@@ -46,22 +78,3 @@ export const getIdThunkCreator = () => (dispatch) => {
     dispatch(setID(result.searchId));
   });
 };
-
-// export const getDataThunkCreator = () => (dispatch) => {
-//   ticketApi
-//     .getSearchId()
-//     .then((result) => {
-//       dispatch(setID(result.searchId));
-//       return result.searchId;
-//     })
-//     .then((searchID) => {
-//       // eslint-disable-next-line
-//       console.log(searchID);
-//       ticketApi.getTickets(searchID).then((data) => {
-//         if (data.stop === true) {
-//           return;
-//         }
-//         dispatch(setData(data.tickets));
-//       });
-//     });
-// };

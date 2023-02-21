@@ -1,18 +1,21 @@
-@import "src/services/style/variables";
+@import 'src/services/style/variables';
 .filter {
-  margin-right: 20px;
-  margin-top: 10px;
   display: flex;
   flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  width: 200px;
+  border-radius: $border_radius;
   .title_wrapper {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     h2 {
       font-size: 12px;
       font-family: $main_font;
       font-weight: 600;
-      line-height: 12px;
+      line-height: 20px;
       letter-spacing: 0.5px;
       text-align: left;
+      margin: 0;
     }
   }
   .checkbox_wrapper {
@@ -30,6 +33,7 @@
       letter-spacing: 0;
       cursor: pointer;
     }
+
     .checkbox_custom {
       margin-right: 10px;
       position: absolute;
@@ -51,6 +55,27 @@
       background: url('checked.svg') center center no-repeat;
       box-shadow: 0 2px 8px 0 $active_shadow_color;
       border-color: $active_color;
+    }
+
+  }
+  :last-child {
+    margin-bottom: 0;
+  }
+
+}
+
+@media (max-width: $mobile_width_screen) {
+  .filter {
+    width: 100%;
+    padding: 6px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .title_wrapper {
+      margin-bottom: 10px;
+    }
+    .checkbox_wrapper {
+      padding: 0 25px;
     }
   }
 }
