@@ -18,7 +18,7 @@ function LoadTicketsButton(props) {
 }
 
 const mapStateToProps = (state) => {
-  const { searchID } = state;
+  const { searchID } = state.dataReducer;
   return {
     searchID,
   };

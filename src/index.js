@@ -1,21 +1,9 @@
-import App from './components/app';
-import filterReducer from './services/redux/reducers/filter-reducer';
-import { createRoot } from 'react-dom/client';
-import { applyMiddleware, createStore, compose } from 'redux';
 import './index.scss';
+import App from './components/app';
+import store from './services/redux';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 
-const composeEnhancers =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Specify extension’s options like name, actionsDenylist, actionsCreators, serialize...
-      })
-    : compose;
-const store = createStore(
-  filterReducer,
-  composeEnhancers(applyMiddleware(thunk))
-);
 const container = document.getElementById('container');
 const root = createRoot(container);
 root.render(

@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 function CardList({
   filteredData,
   numberOfTickets,
-  loading,
+  loadingID,
   hasFilteredData,
   alertEmptyData,
 }) {
@@ -30,7 +30,7 @@ function CardList({
   const alertView = alertEmptyData ? <ErrorEmptyTickets /> : null;
   const cardsView = hasFilteredData ? cards : null;
   const showMoreButtonView = hasFilteredData ? <ShowMoreButton /> : null;
-  const spinner = loading ? <Spinner /> : null;
+  const spinner = loadingID ? <Spinner /> : null;
   const loadTicketsButton = !hasFilteredData ? <LoadTickets /> : null;
 
   return (
@@ -48,24 +48,16 @@ const mapStateToProps = (state) => {
   const {
     filteredData,
     numberOfTickets,
-    loading,
-    hasData,
+    loadingID,
     hasFilteredData,
     alertEmptyData,
-    tab,
-    filter,
-    data,
-  } = state;
+  } = state.dataReducer;
   return {
     filteredData,
     numberOfTickets,
-    loading,
-    hasData,
+    loadingID,
     hasFilteredData,
     alertEmptyData,
-    tab,
-    filter,
-    data,
   };
 };
 

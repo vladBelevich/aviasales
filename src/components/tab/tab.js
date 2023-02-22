@@ -40,7 +40,7 @@ function Tab({ tab, tabCheapestAct, tabFastestAct, tabOptimalAct }) {
 }
 
 const mapStateToProps = (state) => {
-  const { tab } = state;
+  const { _tab: tab } = state.filterReducer;
   return {
     tab,
   };

@@ -54,15 +54,16 @@ export const emptyFilteredData = (data) => ({
 export const showMoreTickets = () => ({
   type: 'SHOW_MORE_TICKETS',
 });
+export const showNetworkError = () => ({
+  type: 'SHOW_NETWORK_ERROR',
+});
 
 export const getDataThunkCreator = (searchID) => (dispatch) => {
   function getData() {
     ticketApi.getTickets(searchID).then((data) => {
-      console.log(data);
       if (data.error) {
-        getData();
+        dispatch(showNetworkError());
       } else if (data.stop) {
-        console.log(data);
         dispatch(finishGetData());
       } else {
         dispatch(setData(data.tickets));

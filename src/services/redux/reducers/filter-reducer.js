@@ -1,13 +1,26 @@
-import { defaultState } from '../default-state';
+const defaultState = {
+  _filter: {
+    allChecked: true,
+    withoutTransferChecked: true,
+    oneTransferChecked: true,
+    twoTransferChecked: true,
+    threeTransferChecked: true,
+  },
+  _tab: {
+    cheapest: false,
+    fastest: true,
+    optimal: false,
+  },
+};
 // eslint-disable-next-line
 const filterReducer = (state = defaultState, action) => {
-  const { filter, data, numberOfTickets, tab } = state;
+  const { _filter, _tab } = state;
   switch (action.type) {
     case 'CHECKED_ALL':
-      if (filter.allChecked) {
+      if (_filter.allChecked) {
         return {
           ...state,
-          filter: {
+          _filter: {
             allChecked: false,
             withoutTransferChecked: false,
             oneTransferChecked: false,
@@ -18,7 +31,7 @@ const filterReducer = (state = defaultState, action) => {
       }
       return {
         ...state,
-        filter: {
+        _filter: {
           allChecked: true,
           withoutTransferChecked: true,
           oneTransferChecked: true,
@@ -27,25 +40,25 @@ const filterReducer = (state = defaultState, action) => {
         },
       };
     case 'CHECKED_WITHOUT_TRANSFER': {
-      if (filter.allChecked) {
+      if (_filter.allChecked) {
         return {
           ...state,
-          filter: {
-            ...filter,
+          _filter: {
+            ..._filter,
             allChecked: false,
             withoutTransferChecked: false,
           },
         };
       } else if (
-        !filter.withoutTransferChecked &&
-        filter.oneTransferChecked &&
-        filter.twoTransferChecked &&
-        filter.threeTransferChecked
+        !_filter.withoutTransferChecked &&
+        _filter.oneTransferChecked &&
+        _filter.twoTransferChecked &&
+        _filter.threeTransferChecked
       ) {
         return {
           ...state,
-          filter: {
-            ...filter,
+          _filter: {
+            ..._filter,
             allChecked: true,
             withoutTransferChecked: true,
           },
@@ -53,32 +66,32 @@ const filterReducer = (state = defaultState, action) => {
       }
       return {
         ...state,
-        filter: {
-          ...filter,
-          withoutTransferChecked: !filter.withoutTransferChecked,
+        _filter: {
+          ..._filter,
+          withoutTransferChecked: !_filter.withoutTransferChecked,
         },
       };
     }
     case 'CHECKED_ONE_TRANSFER': {
-      if (filter.allChecked) {
+      if (_filter.allChecked) {
         return {
           ...state,
-          filter: {
-            ...filter,
+          _filter: {
+            ..._filter,
             allChecked: false,
             oneTransferChecked: false,
           },
         };
       } else if (
-        filter.withoutTransferChecked &&
-        !filter.oneTransferChecked &&
-        filter.twoTransferChecked &&
-        filter.threeTransferChecked
+        _filter.withoutTransferChecked &&
+        !_filter.oneTransferChecked &&
+        _filter.twoTransferChecked &&
+        _filter.threeTransferChecked
       ) {
         return {
           ...state,
-          filter: {
-            ...filter,
+          _filter: {
+            ..._filter,
             allChecked: true,
             oneTransferChecked: true,
           },
@@ -86,58 +99,61 @@ const filterReducer = (state = defaultState, action) => {
       }
       return {
         ...state,
-        filter: { ...filter, oneTransferChecked: !filter.oneTransferChecked },
+        _filter: {
+          ..._filter,
+          oneTransferChecked: !_filter.oneTransferChecked,
+        },
       };
     }
     case 'CHECKED_TWO_TRANSFER': {
-      if (filter.allChecked) {
+      if (_filter.allChecked) {
         return {
           ...state,
-          filter: {
-            ...filter,
+          _filter: {
+            ..._filter,
             allChecked: false,
             twoTransferChecked: false,
           },
         };
       } else if (
-        filter.withoutTransferChecked &&
-        filter.oneTransferChecked &&
-        !filter.twoTransferChecked &&
-        filter.threeTransferChecked
+        _filter.withoutTransferChecked &&
+        _filter.oneTransferChecked &&
+        !_filter.twoTransferChecked &&
+        _filter.threeTransferChecked
       ) {
         return {
           ...state,
-          filter: { ...filter, allChecked: true, twoTransferChecked: true },
+          _filter: { ..._filter, allChecked: true, twoTransferChecked: true },
         };
       }
       return {
         ...state,
-        filter: {
-          ...filter,
-          twoTransferChecked: !filter.twoTransferChecked,
+        _filter: {
+          ..._filter,
+          twoTransferChecked: !_filter.twoTransferChecked,
         },
       };
     }
     case 'CHECKED_THREE_TRANSFER': {
-      if (filter.allChecked) {
+      if (_filter.allChecked) {
         return {
           ...state,
-          filter: {
-            ...filter,
+          _filter: {
+            ..._filter,
             allChecked: false,
             threeTransferChecked: false,
           },
         };
       } else if (
-        filter.withoutTransferChecked &&
-        filter.oneTransferChecked &&
-        filter.twoTransferChecked &&
-        !filter.threeTransferChecked
+        _filter.withoutTransferChecked &&
+        _filter.oneTransferChecked &&
+        _filter.twoTransferChecked &&
+        !_filter.threeTransferChecked
       ) {
         return {
           ...state,
-          filter: {
-            ...filter,
+          _filter: {
+            ..._filter,
             allChecked: true,
             threeTransferChecked: true,
           },
@@ -146,17 +162,17 @@ const filterReducer = (state = defaultState, action) => {
 
       return {
         ...state,
-        filter: {
-          ...filter,
-          threeTransferChecked: !filter.threeTransferChecked,
+        _filter: {
+          ..._filter,
+          threeTransferChecked: !_filter.threeTransferChecked,
         },
       };
     }
     case 'CHEAPEST_ACTIVE': {
       return {
         ...state,
-        tab: {
-          ...tab,
+        _tab: {
+          ..._tab,
           cheapest: true,
           fastest: false,
           optimal: false,
@@ -166,8 +182,8 @@ const filterReducer = (state = defaultState, action) => {
     case 'FASTEST_ACTIVE': {
       return {
         ...state,
-        tab: {
-          ...tab,
+        _tab: {
+          ..._tab,
           cheapest: false,
           fastest: true,
           optimal: false,
@@ -177,57 +193,12 @@ const filterReducer = (state = defaultState, action) => {
     case 'OPTIMAL_ACTIVE': {
       return {
         ...state,
-        tab: {
-          ...tab,
+        _tab: {
+          ..._tab,
           cheapest: false,
           fastest: false,
           optimal: true,
         },
-      };
-    }
-    case 'SET_ID_SEARCH_TO_STATE': {
-      return {
-        ...state,
-        loading: false,
-        searchID: action.searchID,
-      };
-    }
-    case 'SET_DATA_TO_STATE': {
-      return {
-        ...state,
-        data: data.concat(action.data),
-        loadingAllData: true,
-        hasData: true,
-        gettingData: true,
-      };
-    }
-    case 'FINISH_GET_DATA': {
-      return {
-        ...state,
-        gettingData: false,
-        loadingAllData: false,
-      };
-    }
-    case 'FILTER_DATA': {
-      return {
-        ...state,
-        filteredData: action.filteredData,
-        hasFilteredData: true,
-        alertEmptyData: false,
-      };
-    }
-    case 'EMPTY_FILTERED_DATA': {
-      return {
-        ...state,
-        filteredData: action.filteredData,
-        hasFilteredData: false,
-        alertEmptyData: true,
-      };
-    }
-    case 'SHOW_MORE_TICKETS': {
-      return {
-        ...state,
-        numberOfTickets: numberOfTickets + 5,
       };
     }
     default:

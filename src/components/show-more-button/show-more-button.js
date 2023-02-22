@@ -16,10 +16,4 @@ function ShowMoreButton({ showMoreTickets }) {
   );
 }
 
-const mapStateToProps = (state) => {
-  // eslint-disable-next-line
-  const {} = state;
-  return {};
-};
-
-export default connect(mapStateToProps, actions)(ShowMoreButton);
+export default connect(null, actions)(ShowMoreButton);

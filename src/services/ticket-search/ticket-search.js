@@ -9,7 +9,6 @@ export default class TicketSearch {
       };
     }
     if (!res.ok) {
-      console.log(res);
       throw new Error(`Could not fetch ${url}, received ${res.status}`);
     }
     return res.json();

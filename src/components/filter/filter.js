@@ -1,5 +1,7 @@
 import classes from './filter.module.scss';
 import Spinner from '../spinner';
+import ErrorNetwork from '../error-network';
+import LoadTicketsButtonFilter from '../load-tickets-button-filter/index';
 import * as actions from '../../services/redux/actions';
 import { connect } from 'react-redux';
 
@@ -15,6 +17,7 @@ function Filter({
   checkedThreeTransferAct,
   filterData,
   tab,
+  networkError,
 }) {
   const {
     allChecked,
@@ -64,6 +67,12 @@ function Filter({
 
   const spinnerView = loadingAllData ? (
     <Spinner className={classes.filter_spinner} />
+  ) : null;
+
+  const networkErrorView = networkError ? (
+    <div>
+      <ErrorNetwork /> <LoadTicketsButtonFilter />
+    </div>
   ) : null;
   return (
     <div className={classes.filter}>
@@ -120,19 +129,22 @@ function Filter({
         />
         <label htmlFor='three_transfer'>3 пересадки</label>
       </div>
+      {networkErrorView}
       {spinnerView}
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
-  const { filter, loadingAllData, hasData, data, tab } = state;
+  const { _filter: filter, _tab: tab } = state.filterReducer;
+  const { loadingAllData, hasData, data, networkError } = state.dataReducer;
   return {
     filter,
     loadingAllData,
     hasData,
     data,
     tab,
+    networkError,
   };
 };
 
