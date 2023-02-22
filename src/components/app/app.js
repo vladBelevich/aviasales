@@ -5,7 +5,7 @@ import * as actions from '../../services/redux/actions';
 import { connect } from 'react-redux';
 import { Component } from 'react';
 
-export class App extends Component {
+class App extends Component {
   componentDidMount() {
     const { getIdThunkCreator } = this.props;
     getIdThunkCreator();
