@@ -1,4 +1,4 @@
-import cardClasses from './card.module.scss';
+import cardClasses from './Card.module.scss';
 import logo from './airport_logo.png';
 import { addMinutes, format } from 'date-fns';
 

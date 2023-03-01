@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import logoClasses from './logo.module.scss';
+import logoClasses from './Logo.module.scss';
 import { Row } from 'antd';
 
 function Logo() {

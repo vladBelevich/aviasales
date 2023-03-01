@@ -1,5 +1,5 @@
-import classes from './show-more-button.module.scss';
-import * as actions from '../../services/redux/actions';
+import classes from './ShowMoreButton.module.scss';
+import * as actions from '../../services/redux/Actions';
 import { connect } from 'react-redux';
 
 function ShowMoreButton({ showMoreTickets }) {

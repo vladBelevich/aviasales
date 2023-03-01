@@ -1,3 +1,3 @@
-import Tab from './main-content';
+import Tab from './MainContent';
 
 export default Tab;

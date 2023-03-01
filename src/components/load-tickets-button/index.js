@@ -1,3 +1,3 @@
-import LoadTickets from './load-tickets-button';
+import LoadTickets from './LoadTicketsButton';
 
 export default LoadTickets;

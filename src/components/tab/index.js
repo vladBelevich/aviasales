@@ -1,3 +1,3 @@
-import BaseContent from './tab';
+import BaseContent from './Tab';
 
 export default BaseContent;

@@ -1,4 +1,4 @@
-import TicketSearch from '../ticket-search/ticket-search';
+import TicketSearch from '../ticket-search/TicketSearch';
 
 const ticketApi = new TicketSearch();
 

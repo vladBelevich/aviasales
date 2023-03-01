@@ -1,3 +1,3 @@
-import ErrorEmptyTickets from './error-empty-tickets';
+import ErrorEmptyTickets from './ErrorEmptyTickets';
 
 export default ErrorEmptyTickets;

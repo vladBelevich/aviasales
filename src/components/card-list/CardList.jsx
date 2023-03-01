@@ -1,4 +1,4 @@
-import cardListClasses from './card-list.module.scss';
+import cardListClasses from './CardList.module.scss';
 import Card from '../card';
 import Spinner from '../spinner';
 import LoadTickets from '../load-tickets-button';

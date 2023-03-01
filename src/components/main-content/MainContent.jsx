@@ -1,4 +1,4 @@
-import cardClasses from './main-content.module.scss';
+import cardClasses from './MainContent.module.scss';
 import Filter from '../filter';
 import Tab from '../tab';
 import Spinner from '../spinner';

@@ -1,5 +1,5 @@
-import filterReducer from './reducers/filter-reducer';
-import dataReducer from './reducers/data-reducer';
+import filterReducer from './reducers/FilterReducer';
+import dataReducer from './reducers/DataReducer';
 import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 
 import thunk from 'redux-thunk';

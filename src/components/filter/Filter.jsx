@@ -1,8 +1,8 @@
-import classes from './filter.module.scss';
+import classes from './Filter.module.scss';
 import Spinner from '../spinner';
 import ErrorNetwork from '../error-network';
 import LoadTicketsButtonFilter from '../load-tickets-button-filter/index';
-import * as actions from '../../services/redux/actions';
+import * as actions from '../../services/redux/Actions';
 import { connect } from 'react-redux';
 
 function Filter({
@@ -29,27 +29,35 @@ function Filter({
   const { cheapest, fastest } = tab;
 
   if (hasData) {
-    let filteredData = [...data];
-    if (!withoutTransferChecked) {
-      filteredData = filteredData.filter(
+    let filteredData = [];
+    let checkedData = [];
+    if (withoutTransferChecked) {
+      checkedData = data.filter(
         (el) =>
-          el.segments[0].stops.length !== 0 || el.segments[1].stops.length !== 0
+          el.segments[0].stops.length === 0 || el.segments[1].stops.length === 0
       );
+      filteredData = [...filteredData, ...checkedData];
     }
-    if (!oneTransferChecked) {
-      filteredData = filteredData.filter(
-        (el) => el.segments[0].stops.length + el.segments[1].stops.length !== 1
+    if (oneTransferChecked) {
+      checkedData = data.filter(
+        (el) =>
+          el.segments[0].stops.length === 1 || el.segments[1].stops.length === 1
       );
+      filteredData = [...filteredData, ...checkedData];
     }
-    if (!twoTransferChecked) {
-      filteredData = filteredData.filter(
-        (el) => el.segments[0].stops.length + el.segments[1].stops.length !== 2
+    if (twoTransferChecked) {
+      checkedData = data.filter(
+        (el) =>
+          el.segments[0].stops.length === 2 || el.segments[1].stops.length === 2
       );
+      filteredData = [...filteredData, ...checkedData];
     }
-    if (!threeTransferChecked) {
-      filteredData = filteredData.filter(
-        (el) => el.segments[0].stops.length + el.segments[1].stops.length !== 3
+    if (threeTransferChecked) {
+      checkedData = data.filter(
+        (el) =>
+          el.segments[0].stops.length === 3 || el.segments[1].stops.length === 3
       );
+      filteredData = [...filteredData, ...checkedData];
     }
     if (cheapest) {
       filteredData.sort((elem, nextElem) => elem.price - nextElem.price);
@@ -62,6 +70,7 @@ function Filter({
           (nextElem.segments[0].duration + nextElem.segments[1].duration)
       );
     }
+    filteredData = [...new Set(filteredData)];
     filterData(filteredData);
   }
 

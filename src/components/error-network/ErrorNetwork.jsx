@@ -1,4 +1,4 @@
-import classes from './error-network.module.scss';
+import classes from './ErrorNetwork.module.scss';
 import { Alert } from 'antd';
 
 function ErrorNetwork() {

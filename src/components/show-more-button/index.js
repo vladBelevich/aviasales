@@ -1,3 +1,3 @@
-import ShowMoreButton from './show-more-button';
+import ShowMoreButton from './ShowMoreButton';
 
 export default ShowMoreButton;

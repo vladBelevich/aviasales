@@ -1,5 +1,5 @@
 import classes from './load-tickets-button.module.scss';
-import * as actions from '../../services/redux/actions';
+import * as actions from '../../services/redux/Actions';
 import { connect } from 'react-redux';
 
 function LoadTicketsButton(props) {

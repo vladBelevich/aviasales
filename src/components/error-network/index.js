@@ -1,3 +1,3 @@
-import ErrorNetwork from './error-network';
+import ErrorNetwork from './ErrorNetwork';
 
 export default ErrorNetwork;

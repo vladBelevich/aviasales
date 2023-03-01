@@ -1,5 +1,5 @@
-import classes from './load-tickets-button-filter.module.scss';
-import * as actions from '../../services/redux/actions';
+import classes from './LoadTicketsButtonFilter.module.scss';
+import * as actions from '../../services/redux/Actions';
 import { connect } from 'react-redux';
 
 function LoadTicketsButtonFilter({ searchID, getDataThunkCreator }) {

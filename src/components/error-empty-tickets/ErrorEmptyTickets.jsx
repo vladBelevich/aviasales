@@ -1,4 +1,4 @@
-import classes from './error-empty-tickets.module.scss';
+import classes from './ErrorEmptyTickets.module.scss';
 import { Alert } from 'antd';
 
 function ErrorEmptyTickets() {

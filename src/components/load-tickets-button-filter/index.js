@@ -1,3 +1,3 @@
-import LoadTicketsButtonFilter from './load-tickets-button-filter';
+import LoadTicketsButtonFilter from './LoadTicketsButtonFilter';
 
 export default LoadTicketsButtonFilter;
