@@ -1,7 +1,5 @@
 import classes from './Filter.module.scss';
 import Spinner from '../spinner';
-import ErrorNetwork from '../error-network';
-import LoadTicketsButtonFilter from '../load-tickets-button-filter/index';
 import * as actions from '../../services/redux/Actions';
 import { connect } from 'react-redux';
 
@@ -9,7 +7,7 @@ function Filter({
   hasData,
   filter,
   data,
-  loadingAllData,
+  loading,
   checkedAllAct,
   checkedWithoutTransferAct,
   checkedOneTransferAct,
@@ -17,7 +15,6 @@ function Filter({
   checkedThreeTransferAct,
   filterData,
   tab,
-  networkError,
 }) {
   const {
     allChecked,
@@ -74,15 +71,10 @@ function Filter({
     filterData(filteredData);
   }
 
-  const spinnerView = loadingAllData ? (
+  const spinnerView = loading ? (
     <Spinner className={classes.filter_spinner} />
   ) : null;
 
-  const networkErrorView = networkError ? (
-    <div>
-      <ErrorNetwork /> <LoadTicketsButtonFilter />
-    </div>
-  ) : null;
   return (
     <div className={classes.filter}>
       <div className={classes.title_wrapper}>
@@ -138,7 +130,6 @@ function Filter({
         />
         <label htmlFor='three_transfer'>3 пересадки</label>
       </div>
-      {networkErrorView}
       {spinnerView}
     </div>
   );
@@ -146,10 +137,10 @@ function Filter({
 
 const mapStateToProps = (state) => {
   const { _filter: filter, _tab: tab } = state.filterReducer;
-  const { loadingAllData, hasData, data, networkError } = state.dataReducer;
+  const { loading, hasData, data, networkError } = state.dataReducer;
   return {
     filter,
-    loadingAllData,
+    loading,
     hasData,
     data,
     tab,

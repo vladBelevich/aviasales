@@ -4,8 +4,8 @@ import Tab from '../tab';
 import Spinner from '../spinner';
 import CardList from '../card-list';
 
-function MainContent({ loadingAllData }) {
-  const spinnerView = loadingAllData ? (
+function MainContent({ loading }) {
+  const spinnerView = loading ? (
     <Spinner className={cardClasses.mainContent_spinner} />
   ) : null;
   return (

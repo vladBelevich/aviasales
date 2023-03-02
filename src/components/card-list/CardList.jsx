@@ -1,7 +1,6 @@
 import cardListClasses from './CardList.module.scss';
 import Card from '../card';
 import Spinner from '../spinner';
-import LoadTickets from '../load-tickets-button';
 import ShowMoreButton from '../show-more-button';
 import ErrorEmptyTickets from '../error-empty-tickets';
 import { connect } from 'react-redux';
@@ -31,13 +30,11 @@ function CardList({
   const cardsView = hasFilteredData ? cards : null;
   const showMoreButtonView = hasFilteredData ? <ShowMoreButton /> : null;
   const spinner = loadingID ? <Spinner /> : null;
-  const loadTicketsButton = !hasFilteredData ? <LoadTickets /> : null;
 
   return (
     <div className={cardListClasses.cardList_wrapper}>
       {cardsView}
       {spinner}
-      {loadTicketsButton}
       {showMoreButtonView}
       {alertView}
     </div>

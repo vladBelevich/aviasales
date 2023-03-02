@@ -58,7 +58,8 @@ export const showNetworkError = () => ({
   type: 'SHOW_NETWORK_ERROR',
 });
 
-export const getDataThunkCreator = (searchID) => (dispatch) => {
+export const getDataThunkCreator = () => async (dispatch) => {
+  const searchID = await ticketApi.getID();
   function getData() {
     ticketApi.getTickets(searchID).then((data) => {
       if (data.error) {
@@ -72,10 +73,4 @@ export const getDataThunkCreator = (searchID) => (dispatch) => {
     });
   }
   getData();
-};
-
-export const getIdThunkCreator = () => (dispatch) => {
-  ticketApi.getSearchId().then((result) => {
-    dispatch(setID(result.searchId));
-  });
 };

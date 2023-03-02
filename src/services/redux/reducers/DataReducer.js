@@ -1,15 +1,13 @@
 const defaultState = {
   data: [],
   filteredData: [],
-  loadingID: true,
-  loadingAllData: false,
+  loading: false,
   searchID: null,
   numberOfTickets: 5,
   hasData: false,
   hasFilteredData: false,
   gettingData: false,
   alertEmptyData: false,
-  networkError: false,
 };
 
 // eslint-disable-next-line
@@ -19,7 +17,6 @@ const dataReducer = (state = defaultState, action) => {
     case 'SET_ID_SEARCH_TO_STATE': {
       return {
         ...state,
-        loadingID: false,
         searchID: action.searchID,
       };
     }
@@ -27,7 +24,7 @@ const dataReducer = (state = defaultState, action) => {
       return {
         ...state,
         data: data.concat(action.data),
-        loadingAllData: true,
+        loading: true,
         hasData: true,
         gettingData: true,
         networkError: false,
@@ -37,7 +34,6 @@ const dataReducer = (state = defaultState, action) => {
       return {
         ...state,
         gettingData: false,
-        loadingAllData: false,
       };
     }
     case 'FILTER_DATA': {
@@ -65,8 +61,7 @@ const dataReducer = (state = defaultState, action) => {
     case 'SHOW_NETWORK_ERROR': {
       return {
         ...state,
-        networkError: true,
-        loadingAllData: false,
+        loading: false,
       };
     }
     default:
