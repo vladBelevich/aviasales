@@ -1,1 +1,1 @@
-# https://aviasales-rfr6dzvpg-vladbelevich.vercel.app/
+# https://aviasales-km8h.vercel.app/
